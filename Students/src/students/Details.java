@@ -210,5 +210,11 @@ public class Details {
        return str;
     }
     
+//    only for file handling
+    public void setGender(String gender)
+    {
+        this.gender=gender;
+    }
+    
     
 }

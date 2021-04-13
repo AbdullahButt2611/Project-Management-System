@@ -115,5 +115,16 @@ public class Project {
         this.description=description;
         return flag;
     }
+//    only for file handling
+    public void setId(String id)
+    {
+        this.id=id;
+    }
+    
+//    only for file handling
+    public void setType(String type)
+    {
+        this.type=type;
+    }
     
 }

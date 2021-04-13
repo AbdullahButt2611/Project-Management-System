@@ -46,5 +46,14 @@ public class Advisor extends Details{
         return ID;
     }
     
+//    only for filehandling
+    public void setStatus(String status)
+    {
+        this.status=status;
+    }
     
+    public void setId(String id)
+    {
+        this.ID=id;
+    }
 }

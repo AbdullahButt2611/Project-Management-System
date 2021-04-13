@@ -37,7 +37,7 @@ public class Heads extends Details{
     {
         super(gender);
         this.qualification=qualification;
-        this.setID();
+        this.setID("");
         this.mark1=0;
         this.mark2=0;
     }
@@ -102,12 +102,20 @@ public class Heads extends Details{
      * This will generate a unique ID for each sign up to this system which will then end up being 
      * The ID of the group members
      */
-    public void setID()
+    public void setID(String id)
     {
-        String str="GR-";
-        Random rand=new Random(1001);
-        str+=rand;
-        this.ID=str;
+        if(id.equals(""))
+        {
+            String str="GR-";
+            Random rand=new Random(1001);
+            str+=rand;
+            this.ID=str;
+        }
+        else
+        {
+            this.ID=id;
+        }
+        
     }
     
     /**
@@ -269,6 +277,12 @@ public class Heads extends Details{
     {
         int total=this.mark1+this.mark2+this.mark3;
         return total;
+    }
+    
+//    used only during file reading
+    public void setQualification(String qual)
+    {
+        this.qualification=qual;
     }
 }
 
