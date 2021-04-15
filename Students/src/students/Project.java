@@ -111,7 +111,7 @@ public class Project {
         int size=description.length();
         for(int i=0;i<size;i++)
         {
-            if((description.charAt(i)>='A' && description.charAt(i)<='Z')||(description.charAt(i)>='a' && description.charAt(i)<='z')||(description.charAt(i)>='0' && description.charAt(i)<='9')||(description.charAt(i)==' ')||(description.charAt(i)==',')||(description.charAt(i)=='.')||(description.charAt(i)=='(')||(description.charAt(i)==')')||(description.charAt(i)=='%'))
+            if((description.charAt(i)>='A' && description.charAt(i)<='Z')||(description.charAt(i)<='\n')||(description.charAt(i)>='a' && description.charAt(i)<='z')||(description.charAt(i)>='0' && description.charAt(i)<='9')||(description.charAt(i)==' ')||(description.charAt(i)==',')||(description.charAt(i)=='.')||(description.charAt(i)=='(')||(description.charAt(i)==')')||(description.charAt(i)=='%'))
                 flag=true;
             else
                 return false;

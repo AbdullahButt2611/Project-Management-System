@@ -65,6 +65,11 @@ public class CommitteeLogin extends javax.swing.JFrame {
         jLabel3.setText("Password :");
 
         showCheck.setText("Show Password");
+        showCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showCheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,6 +171,18 @@ public class CommitteeLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Invalid Credentials...");
         }
     }//GEN-LAST:event_logButtonActionPerformed
+
+    private void showCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showCheckActionPerformed
+        // TODO add your handling code here:
+        if(showCheck.isSelected())
+        {
+            passText.setEchoChar((char)0);
+        }
+        else
+        {
+            passText.setEchoChar('*');
+        }
+    }//GEN-LAST:event_showCheckActionPerformed
 
     /**
      * @param args the command line arguments
