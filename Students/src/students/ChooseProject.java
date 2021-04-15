@@ -5,11 +5,17 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
  */
 public class ChooseProject extends javax.swing.JFrame {
+    
+    int indexOfHead;
+    
+    boolean flag;
 
     /**
      * Creates new form ChooseProject
@@ -18,6 +24,37 @@ public class ChooseProject extends javax.swing.JFrame {
         initComponents();
     }
 
+    public ChooseProject(int i)
+    {
+        this.indexOfHead=i;
+        addDataToRow();
+        this.invalidId.setText(null);
+        
+    }
+    
+    public void addDataToRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getPro().get(i).getId();
+            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+            rowData[2]=Driver.getInstance().getPro().get(i).getType();
+            for(int j=0;j<Driver.getInstance().getAd().size();j++)
+            {
+                if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                {
+                    rowData[3]=Driver.getInstance().getAd().get(j).getName();
+                    flag=true;
+                    break;
+                }
+            }
+            model.addRow(rowData);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +98,11 @@ public class ChooseProject extends javax.swing.JFrame {
         invalidId.setText("not valid");
 
         desButton.setText("For Description");
+        desButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -71,6 +113,11 @@ public class ChooseProject extends javax.swing.JFrame {
 
         chooseButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         chooseButton.setText("Choose ");
+        chooseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         cancelButton.setText("Cancel");
@@ -140,7 +187,41 @@ public class ChooseProject extends javax.swing.JFrame {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+        StudentMenu menu=new StudentMenu(this.indexOfHead);
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void desButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desButtonActionPerformed
+        // TODO add your handling code here:
+        String id=idText.getText();
+        flag=false;
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            if(Driver.getInstance().getPro().get(i).getId().equals(id))
+            {
+                this.jTextArea1.setText(Driver.getInstance().getPro().get(i).getDescription());
+                flag=true;
+                break;
+            }
+            else
+            {
+                flag=false;
+            }
+        }
+        if(flag==false)
+            this.invalidId.setText("This is an invalid ID");
+    }//GEN-LAST:event_desButtonActionPerformed
+
+    private void chooseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseButtonActionPerformed
+        // TODO add your handling code here:
+//        Members.getInstance().s
+        if(flag==true)
+        {
+            Driver.getInstance().getMem().get(this.indexOfHead).setProId(idText.getText());
+        }
+
+    }//GEN-LAST:event_chooseButtonActionPerformed
 
     /**
      * @param args the command line arguments

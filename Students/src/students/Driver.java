@@ -185,6 +185,44 @@ public class Driver {
         }
     }
     
+    public void readMemData()
+    {
+        try
+        {
+            FileReader fr=new FileReader("Members");
+            BufferedReader br=new BufferedReader(fr);
+            String line=br.readLine();
+            line=br.readLine();
+            while(line!=null)
+            {
+                String toks[]=line.split("/");
+                Students st=new Students("","");
+                Members.getInstance().setID(toks[0]);
+                for(int i=1;i<((toks.length)-1);i++)
+                {
+                    String str=toks[i];
+                    String token[]=str.split(",");
+                    st.setName(token[0]);
+                    st.setContact(token[1]);
+                    st.setCnic(token[2]);
+                    st.setEmail(token[3]);
+                    st.setGender(token[4]);
+                    st.setCity(token[5]);
+                    st.setQualification(token[6]);
+                    Members.getInstance().getStu().add(st);
+                    
+                }
+                Driver.getInstance().getMem().add(Members.getInstance());
+            }
+            br.close();
+            fr.close();
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Null identified");
+        }
+    }
+    
     /**
      * This is a method for writing data into the file of "Projects"
      */
@@ -223,7 +261,7 @@ public class Driver {
             line=br.readLine();
             while(line!=null)
             {
-                Project p=new Project("");
+                Project p=new Project();
                 String toks[]=line.split("*");
                 p.setId(toks[0]);
                 p.setTitle(toks[1]);
@@ -312,6 +350,13 @@ public class Driver {
     }
     
     public static void main(String[] args)
-    {}
+    {
+        Driver.getInstance().readAdData();
+        Driver.getInstance().readProData();
+        Driver.getInstance().readMemData();
+        HeadData.getInstance().loadData();
+        MainLogin main=new MainLogin(1);
+        main.setVisible(true);
+    }
     
 }

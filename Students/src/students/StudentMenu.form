@@ -101,6 +101,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="ADD GROUP MEMBERS"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addgrpButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="chooseproButton">
           <Properties>
@@ -109,6 +112,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="CHOOSE PROJECT"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chooseproButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="displayButton">
           <Properties>
@@ -117,6 +123,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Display Evaluation"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="logoutbutton">
           <Properties>
@@ -136,6 +145,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutbuttonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="delgrpButton">
           <Properties>
@@ -144,6 +156,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DELETE GROUP MEMBER"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="delgrpButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

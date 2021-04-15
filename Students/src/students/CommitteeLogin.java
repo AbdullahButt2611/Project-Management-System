@@ -5,6 +5,8 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DEll
@@ -153,6 +155,16 @@ public class CommitteeLogin extends javax.swing.JFrame {
 
     private void logButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logButtonActionPerformed
         // TODO add your handling code here:
+        if(userText.getText().equals("admin098") && passText.getText().equals("admin098"))
+        {
+            CommitteeMenu com=new CommitteeMenu();
+            com.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Invalid Credentials...");
+        }
     }//GEN-LAST:event_logButtonActionPerformed
 
     /**

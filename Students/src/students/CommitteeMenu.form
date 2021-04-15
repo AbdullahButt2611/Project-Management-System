@@ -134,37 +134,58 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="ADD ADVISOR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addadButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="deladButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DELETE ADVISOR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deladButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addproButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ADD PROJECT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addproButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="disproButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DISPLAY PROJECT"/>
                 <Property name="actionCommand" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="disproButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="upproButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="UPDATE PROJECT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="upproButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="evaluateButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="EVALUATE PROJECTS"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evaluateButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DISPLAY GROUP HEADS"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="logoutButton">
               <Properties>
@@ -184,6 +205,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -86,8 +86,9 @@ public class Details {
         int size=name.length();
         for(int i=0;i<size;i++)
         {
-            if((name.charAt(i)>='A' && name.charAt(i)<='Z')||(name.charAt(i)>='a' && name.charAt(i)<='z')||(name.charAt(i)>=' '))
+            if((name.charAt(i)>='A' && name.charAt(i)<='Z')||(name.charAt(i)>='a' && name.charAt(i)<='z')||(name.charAt(i)==' '))
             {
+//                System.out.println(name.charAt(i));
                 flag=true;
             }
             else
@@ -144,7 +145,7 @@ public class Details {
         }
         for(int i=0;i<size;i++)
         {
-            if(cnic.charAt(i)<='0' && cnic.charAt(i)<='9')
+            if(cnic.charAt(i)>='0' && cnic.charAt(i)<='9')
             {
                 flag=true;
             }
@@ -186,12 +187,13 @@ public class Details {
         while(i<size) 
         {
             remain+=email.charAt(i);
+            i++;
         }
-        if(remain=="student.uet.edu.pk")
+        if(remain.equals("student.uet.edu.pk"))
         {
             flag=true;
         }
-        else if(remain=="gmail.com")
+        else if(remain.equals("gmail.com"))
         {
             flag=true;
         }

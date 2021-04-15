@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package students;
-
+import javax.swing.*;
 /**
  *
  * @author DEll
@@ -43,7 +43,7 @@ public class StudentLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel1.setText("Username :");
+        jLabel1.setText("Email :");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel3.setText("Password  :");
@@ -75,9 +75,13 @@ public class StudentLogin extends javax.swing.JFrame {
         signButto.setBackground(new java.awt.Color(0, 51, 255));
         signButto.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         signButto.setForeground(new java.awt.Color(255, 255, 255));
-        signButto.setText("Sign in");
-        signButto.setActionCommand("Sign in");
+        signButto.setText("Sign up");
         signButto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        signButto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signButtoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -168,11 +172,69 @@ public class StudentLogin extends javax.swing.JFrame {
 
     private void showCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showCheckActionPerformed
         // TODO add your handling code here:
+        if(showCheck.isSelected())
+        {
+            passText.setEchoChar((char)0);
+        }
+        else
+        {
+            passText.setEchoChar('*');
+        }
     }//GEN-LAST:event_showCheckActionPerformed
 
     private void logButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logButtonActionPerformed
         // TODO add your handling code here:
+        int index=-1;
+        String user=userText.getText();
+        String pass=passText.getText();
+       int size= HeadData.getInstance().getHead().size();
+       for(int i=0;i<size;i++)
+       {
+           if(HeadData.getInstance().getHead().get(i).getEmail().equals(user)  && HeadData.getInstance().getHead().get(i).getPassword().equals(pass))
+           {
+               index=i;
+               break;
+           }
+       }
+       if(index==-1)
+       {
+           JOptionPane.showMessageDialog(null,"You have Entered wrong Credentials \n Try again with the valid input \n If you dont have an account try creating new account with signup button");
+           userText.setText(null);
+           passText.setText(null);
+       }
+       else
+       {
+           if(index==(HeadData.getInstance().getHead().size()-1))
+           {
+           String name=HeadData.getInstance().getHead().get(index).getName();
+           String contact=HeadData.getInstance().getHead().get(index).getContact();
+           String cnic=HeadData.getInstance().getHead().get(index).getCNIC();
+           String gender=HeadData.getInstance().getHead().get(index).getGender();
+           String city="Lahore";
+           String qual=HeadData.getInstance().getHead().get(index).getQualification();
+           Students stu=new Students(gender,qual);
+           stu.setName(name);
+           stu.setContact(contact);
+           stu.setCnic(cnic);
+           stu.setCity(city);
+//           Driver.getInstance().getMem().get(index).getStu().add(stu);
+            Members.getInstance().getStu().add(stu);
+            Driver.getInstance().getMem().get(index).setID(HeadData.getInstance().getHead().get(index).getID());
+            Driver.getInstance().addMem(Members.getInstance());
+            
+           }
+           StudentMenu st=new StudentMenu(index);
+           st.setVisible(true);
+           this.dispose();
+       }
     }//GEN-LAST:event_logButtonActionPerformed
+
+    private void signButtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signButtoActionPerformed
+        // TODO add your handling code here:
+        SignUp sg=new SignUp();
+        sg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_signButtoActionPerformed
 
     /**
      * @param args the command line arguments

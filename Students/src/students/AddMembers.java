@@ -5,17 +5,50 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
  */
 public class AddMembers extends javax.swing.JFrame {
+    
+    int indexOfHead;
 
     /**
      * Creates new form AddMembers
      */
     public AddMembers() {
         initComponents();
+    }
+    
+    public AddMembers(int i)
+    {
+        initComponents();
+        this.indexOfHead=i;
+        addRowToTable();
+        this.invalidName.setText(null);
+        this.invalidCnic.setText("Only digits required");
+        this.invalidEmail.setText(null);
+        this.invalidCon.setText(null);
+        this.invalidCity.setText(null);
+    }
+    
+    public void addRowToTable()
+    {
+//        int arrayname[]=new int[size]
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getMem().get(this.indexOfHead).getStu().size();i++)
+        {
+            rowData[0]=i+1;
+            rowData[1]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getName();
+            rowData[2]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getGender();
+            rowData[3]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getQualification();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -113,8 +146,18 @@ public class AddMembers extends javax.swing.JFrame {
         invalidCity.setText("invalid City");
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         menuButton.setText("Menu");
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,6 +264,87 @@ public class AddMembers extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        if(Driver.getInstance().getMem().get(this.indexOfHead).getStu().size()==5)
+        {
+            JOptionPane.showMessageDialog(null,"Max length for group members is five \n we are unable to add more members to your group");
+            StudentMenu men=new  StudentMenu(this.indexOfHead);
+            men.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            String name=nameText.getText();
+            String cnic=cnicText.getText();
+            String email=emailText.getText();
+            String gender="";
+            if(fgender.isSelected())
+                gender="Female";
+            else if(mgender.isSelected())
+                gender="Male";
+            String qual=qualBox.getSelectedItem().toString();
+            String contact=conText.getText();
+            String city=cityText.getText();
+            Students st=new Students(gender,qual);
+            boolean flag=false;
+            String str="";
+            flag=st.setName(name);
+            if(flag==false)
+            {
+                this.invalidName.setText("Invalid Name");
+                str="n";
+            }
+            flag=st.setCnic(cnic);
+            if(flag==false)
+            {
+                this.invalidCnic.setText("Invalid Cnic");
+                str="n";
+            }
+            flag=st.setEmail(email);
+            if(flag==false)
+            {
+                this.invalidEmail.setText("Invalid Email");
+                str="n";
+            }
+             flag=st.setContact(contact);
+             if(flag==false)
+             {
+                 this.invalidCon.setText("Invalid contact");
+                 str="n";
+             }
+             flag=st.setCity(city);
+             if(flag==false)
+             {
+                 this.invalidCity.setText("Invalid city");
+                 str="n";
+             }
+             if(str.equals(null))
+             {
+                 Driver.getInstance().getMem().get(this.indexOfHead).getStu().add(st);
+    //             JOptionPane.showMessageDialog(null,"Data added successfully");
+                 addRowToTable();
+                    this.invalidName.setText(null);
+                    this.invalidCnic.setText("Only digits required");
+                    this.invalidEmail.setText(null);
+                    this.invalidCon.setText(null);
+                    this.invalidCity.setText(null);
+                    this.nameText.setText(null);
+                    this.cnicText.setText(null);
+                    this.emailText.setText(null);
+                    this.conText.setText(null);
+                    this.cityText.setText(null);
+             }
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        // TODO add your handling code here:
+        StudentMenu menu=new StudentMenu(this.indexOfHead);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -378,7 +378,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="8 characters long"/>
+                <Property name="text" type="java.lang.String" value="8 characters long atleast"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="passText">
@@ -411,6 +411,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registerButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

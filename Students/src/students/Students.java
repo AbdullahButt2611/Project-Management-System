@@ -55,7 +55,7 @@ public class Students extends Details{
         int size=city.length();
         for(int i=0;i<size;i++)
         {
-            if((city.charAt(i)>='A' && city.charAt(i)<='Z')||(city.charAt(i)>='a' && city.charAt(i)<='z')||(city.charAt(i)>=' '))
+            if((city.charAt(i)>='A' && city.charAt(i)<='Z')||(city.charAt(i)>='a' && city.charAt(i)<='z')||(city.charAt(i)==' '))
             {
                 flag=true;
             }
@@ -68,6 +68,11 @@ public class Students extends Details{
         return flag;
     }
     
+//    for file handling
+    public void setQualification(String qu)
+    {
+        this.qualification=qu;
+    }
 
     
 }

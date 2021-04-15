@@ -20,6 +20,9 @@ public class Project {
     
     private String id;
     
+    public Project()
+    {}
+    
     /**
      * This is a parameterized for the Project class
      * @param type Type of the project chosen by the committee member using combo box
@@ -37,8 +40,9 @@ public class Project {
     public void setId()
     {
         String first="Pro-";
-        Random rand=new Random(1001);
-        first+=rand;
+        Random rand=new Random();
+        int rnd=rand.nextInt(1001);
+        first+=rnd;
         this.id=first;
     }
 
@@ -85,7 +89,7 @@ public class Project {
         int size=title.length();
         for(int i=0;i<size;i++)
         {
-            if((title.charAt(i)>='A' && title.charAt(i)<='Z')||(title.charAt(i)>='a' && title.charAt(i)<='z')||(title.charAt(i)>=' '))
+            if((title.charAt(i)>='A' && title.charAt(i)<='Z')||(title.charAt(i)>='a' && title.charAt(i)<='z')||(title.charAt(i)==' '))
             {
                 flag=true;
             }
@@ -107,7 +111,7 @@ public class Project {
         int size=description.length();
         for(int i=0;i<size;i++)
         {
-            if((description.charAt(i)>='A' && description.charAt(i)<='Z')||(description.charAt(i)>='a' && description.charAt(i)<='z')||(description.charAt(i)>='0' && description.charAt(i)<='9')||(description.charAt(i)>=' ')||(description.charAt(i)==',')||(description.charAt(i)=='.')||(description.charAt(i)=='(')||(description.charAt(i)==')')||(description.charAt(i)=='%'))
+            if((description.charAt(i)>='A' && description.charAt(i)<='Z')||(description.charAt(i)>='a' && description.charAt(i)<='z')||(description.charAt(i)>='0' && description.charAt(i)<='9')||(description.charAt(i)==' ')||(description.charAt(i)==',')||(description.charAt(i)=='.')||(description.charAt(i)=='(')||(description.charAt(i)==')')||(description.charAt(i)=='%'))
                 flag=true;
             else
                 return false;

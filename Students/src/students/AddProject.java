@@ -5,6 +5,8 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
@@ -16,6 +18,23 @@ public class AddProject extends javax.swing.JFrame {
      */
     public AddProject() {
         initComponents();
+        addDatatoRow();
+        this.invalidTitle.setText(null);
+        this.invalidDes.setText(null);
+    }
+    
+    public void addDatatoRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[3];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getPro().get(i).getId();
+            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+            rowData[2]=Driver.getInstance().getPro().get(i).getType();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -50,7 +69,7 @@ public class AddProject extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID ", "Title", "Type", "Last Date"
+                "ID ", "Title", "Type"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -83,10 +102,20 @@ public class AddProject extends javax.swing.JFrame {
         addButton.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cancelButton.setText("CANCEL");
         cancelButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +138,7 @@ public class AddProject extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addContainerGap(42, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
@@ -119,7 +148,6 @@ public class AddProject extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)))))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -155,6 +183,47 @@ public class AddProject extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        String title=this.titleText.getText();
+        String type=this.jComboBox1.getSelectedItem().toString();
+        String des=this.desText.getText();
+        Project pro=new Project(type);
+        boolean flag=false;
+        String str="";
+        flag=pro.setTitle(title);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidTitle.setText("Invalid Text");
+            str="n";
+        }
+        flag=pro.setDescription(des);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidDes.setText("Invalid description");
+            str="n";
+        }
+        if(str.equals(""))
+        {
+            Driver.getInstance().getPro().add(pro);
+            addDatatoRow();
+            this.invalidTitle.setText(null);
+            this.invalidDes.setText(null);
+            this.titleText.setText(null);
+            this.desText.setText(null);
+            this.jComboBox1.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments

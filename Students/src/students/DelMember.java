@@ -5,17 +5,43 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
  */
 public class DelMember extends javax.swing.JFrame {
+    
+    int indexOfHead;
 
     /**
      * Creates new form DelMember
      */
     public DelMember() {
         initComponents();
+    }
+    
+    public DelMember(int i)
+    {
+        this.indexOfHead=i;
+        this.invalidSr.setText(null);
+        addRowToTable();
+    }
+    
+    public void addRowToTable()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[5];
+        for(int i=0;i<Driver.getInstance().getMem().get(this.indexOfHead).getStu().size();i++)
+        {
+            rowData[0]=i+1;
+            rowData[1]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getName();
+            rowData[2]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getGender();
+            rowData[3]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getQualification();
+            rowData[4]=Driver.getInstance().getMem().get(this.indexOfHead).getID();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -61,12 +87,22 @@ public class DelMember extends javax.swing.JFrame {
         delButton.setForeground(new java.awt.Color(255, 255, 255));
         delButton.setText("DELETE");
         delButton.setBorder(null);
+        delButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delButtonActionPerformed(evt);
+            }
+        });
 
         cancelbutton.setBackground(new java.awt.Color(0, 0, 204));
         cancelbutton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cancelbutton.setForeground(new java.awt.Color(255, 255, 255));
         cancelbutton.setText("CANCEL");
         cancelbutton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancelbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbuttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,6 +149,21 @@ public class DelMember extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+        // TODO add your handling code here:
+        int sr=Integer.parseInt(srText.getText());
+        Driver.getInstance().getMem().get(indexOfHead).getStu().remove(sr);
+        addRowToTable();
+        this.srText.setText(null);
+    }//GEN-LAST:event_delButtonActionPerformed
+
+    private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbuttonActionPerformed
+        // TODO add your handling code here:
+        StudentMenu menu=new StudentMenu(this.indexOfHead);
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelbuttonActionPerformed
 
     /**
      * @param args the command line arguments

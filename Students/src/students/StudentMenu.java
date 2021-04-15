@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package students;
-
+import javax.swing.*;
 /**
  *
  * @author DEll
  */
 public class StudentMenu extends javax.swing.JFrame {
 
+    int indexOfHead;
     /**
      * Creates new form StudentMenu
      */
@@ -18,6 +19,12 @@ public class StudentMenu extends javax.swing.JFrame {
         initComponents();
     }
 
+    public StudentMenu(int i)
+    {
+        initComponents();
+        this.indexOfHead=i;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,21 +52,46 @@ public class StudentMenu extends javax.swing.JFrame {
 
         addgrpButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addgrpButton.setText("ADD GROUP MEMBERS");
+        addgrpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addgrpButtonActionPerformed(evt);
+            }
+        });
 
         chooseproButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         chooseproButton.setText("CHOOSE PROJECT");
+        chooseproButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseproButtonActionPerformed(evt);
+            }
+        });
 
         displayButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         displayButton.setText("Display Evaluation");
+        displayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayButtonActionPerformed(evt);
+            }
+        });
 
         logoutbutton.setBackground(new java.awt.Color(255, 0, 0));
         logoutbutton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logoutbutton.setForeground(new java.awt.Color(255, 255, 255));
         logoutbutton.setText("LOG OUT");
         logoutbutton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logoutbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutbuttonActionPerformed(evt);
+            }
+        });
 
         delgrpButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         delgrpButton.setText("DELETE GROUP MEMBER");
+        delgrpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delgrpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,6 +144,42 @@ public class StudentMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addgrpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addgrpButtonActionPerformed
+        // TODO add your handling code here:
+        AddMembers add=new AddMembers(this.indexOfHead);
+        add.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addgrpButtonActionPerformed
+
+    private void delgrpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delgrpButtonActionPerformed
+        // TODO add your handling code here:
+        DelMember del=new DelMember(this.indexOfHead);
+        del.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_delgrpButtonActionPerformed
+
+    private void chooseproButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseproButtonActionPerformed
+        // TODO add your handling code here:
+        ChooseProject cho=new ChooseProject(this.indexOfHead);
+        cho.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_chooseproButtonActionPerformed
+
+    private void displayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayButtonActionPerformed
+        // TODO add your handling code here:
+        Evaluation ev=new Evaluation(this.indexOfHead);
+        ev.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_displayButtonActionPerformed
+
+    private void logoutbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbuttonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"You are loging out of the system");
+        MainLogin main=new MainLogin();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutbuttonActionPerformed
 
     /**
      * @param args the command line arguments

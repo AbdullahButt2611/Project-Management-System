@@ -40,6 +40,7 @@ public class Heads extends Details{
         this.setID("");
         this.mark1=0;
         this.mark2=0;
+        this.mark3=0;
     }
 
     /**

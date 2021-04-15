@@ -17,6 +17,12 @@ public class MainLogin extends javax.swing.JFrame {
     public MainLogin() {
         initComponents();
     }
+    
+    public MainLogin(int i)
+    {
+        initComponents();
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,6 +114,11 @@ public class MainLogin extends javax.swing.JFrame {
         stuLogButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         stuLogButton.setText("Students");
         stuLogButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        stuLogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stuLogButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -139,6 +150,11 @@ public class MainLogin extends javax.swing.JFrame {
         exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText(" Exit System");
         exitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +207,28 @@ public class MainLogin extends javax.swing.JFrame {
 
     private void comLogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comLogButtonActionPerformed
         // TODO add your handling code here:
+        CommitteeLogin com=new CommitteeLogin();
+        com.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_comLogButtonActionPerformed
+
+    private void stuLogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stuLogButtonActionPerformed
+        // TODO add your handling code here:
+        StudentLogin st=new StudentLogin();
+        st.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_stuLogButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("");
+        Driver.getInstance().saveAdData();
+        Driver.getInstance().saveMemData();
+        Driver.getInstance().saveProData();
+        HeadData.getInstance().saveData();
+        this.dispose();
+        
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments

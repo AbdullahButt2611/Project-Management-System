@@ -5,6 +5,9 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
@@ -16,6 +19,24 @@ public class DeleteAdvisor extends javax.swing.JFrame {
      */
     public DeleteAdvisor() {
         initComponents();
+        addDatatoRow();
+        this.invalidName.setText(null);
+        this.invalidId.setText(null);
+    }
+    
+    public void addDatatoRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getAd().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getAd().get(i).getName();
+            rowData[1]=Driver.getInstance().getAd().get(i).getGender();
+            rowData[2]=Driver.getInstance().getAd().get(i).getStatus();
+            rowData[3]=Driver.getInstance().getAd().get(i).getID();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -77,12 +98,22 @@ public class DeleteAdvisor extends javax.swing.JFrame {
         delButton.setForeground(new java.awt.Color(255, 255, 255));
         delButton.setText("DELETE");
         delButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        delButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delButtonActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(0, 0, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CANCEL");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bhLayout = new javax.swing.GroupLayout(bh);
         bh.setLayout(bhLayout);
@@ -162,6 +193,55 @@ public class DeleteAdvisor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+        // TODO add your handling code here:
+        String name=this.nameText.getText();
+        String id=this.idText.getText();
+        boolean flag=false;
+        /*flag=Driver.getInstance().delAdvisor(id, name);
+        if(flag==true)
+        {
+            addDatatoRow();
+            this.nameText.setText(null);
+            this.idText.setText(null);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Data not found");
+        }*/
+         for(int i=0;i<Driver.getInstance().getAd().size();i++)
+        {
+            if(Driver.getInstance().getAd().get(i).getName().equals(name) && Driver.getInstance().getAd().get(i).getID().equals(id))
+            {
+                Driver.getInstance().getAd().remove(i);
+                flag=true;
+                break;
+            }
+            else
+            {
+                flag=false;
+            }
+        }
+         if(flag==true)
+        {
+            addDatatoRow();
+            this.nameText.setText(null);
+            this.idText.setText(null);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Data not found");
+        }
+       
+    }//GEN-LAST:event_delButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
@@ -16,6 +18,37 @@ public class DisplayProject extends javax.swing.JFrame {
      */
     public DisplayProject() {
         initComponents();
+        addDatatoRow();
+    }
+    
+    public void addDatatoRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[5];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getPro().get(i).getId();
+            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+            for(int j=0;j<Driver.getInstance().getAd().size();j++)
+            {
+                if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                {
+                    rowData[2]=Driver.getInstance().getAd().get(j).getID();
+                    rowData[3]=Driver.getInstance().getAd().get(j).getStatus();
+                    break;
+                }
+            }
+            for(int j=0;j<Driver.getInstance().getMem().size();j++)
+            {
+                if(Driver.getInstance().getMem().get(j).getProId().equals(Driver.getInstance().getPro().get(i).getId()))
+                {
+                    rowData[4]=Driver.getInstance().getMem().get(j).getID();
+                    break;
+                }
+            }
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -39,16 +72,24 @@ public class DisplayProject extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Title", "Advisor ID", "Status", "Group ID", "Last Date"
+                "ID", "Title", "Advisor ID", "Status", "Group ID"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         menuButton.setBackground(new java.awt.Color(0, 0, 255));
         menuButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         menuButton.setForeground(new java.awt.Color(255, 255, 255));
         menuButton.setText("Menu");
         menuButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +112,13 @@ public class DisplayProject extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        // TODO add your handling code here:
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     /**
      * @param args the command line arguments

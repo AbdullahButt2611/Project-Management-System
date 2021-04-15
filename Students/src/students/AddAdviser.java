@@ -5,6 +5,8 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
@@ -16,6 +18,26 @@ public class AddAdviser extends javax.swing.JFrame {
      */
     public AddAdviser() {
         initComponents();
+        this.invalidName.setText(null);
+        this.invalidCnic.setText(null);
+        this.invalidEmail.setText(null);
+        this.invalidId.setText(null);
+        addDatatoRow();
+    }
+    
+    public void addDatatoRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getAd().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getAd().get(i).getName();
+            rowData[1]=Driver.getInstance().getAd().get(i).getGender();
+            rowData[2]=Driver.getInstance().getAd().get(i).getStatus();
+            rowData[3]=Driver.getInstance().getAd().get(i).getID();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -52,6 +74,7 @@ public class AddAdviser extends javax.swing.JFrame {
         invalidId = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ADD AVISOR");
@@ -123,12 +146,32 @@ public class AddAdviser extends javax.swing.JFrame {
         addButton.setForeground(new java.awt.Color(255, 255, 255));
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         resetButton.setBackground(new java.awt.Color(255, 0, 0));
         resetButton.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         resetButton.setForeground(new java.awt.Color(255, 255, 255));
         resetButton.setText("Reset");
         resetButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,11 +184,9 @@ public class AddAdviser extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
+                                .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3)
@@ -167,14 +208,19 @@ public class AddAdviser extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                                         .addComponent(mgender))
                                     .addComponent(statusBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(proId))))
+                                    .addComponent(proId)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)))
+                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -219,14 +265,106 @@ public class AddAdviser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(invalidId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        String name=nameText.getText();
+        String cnic=cnicText.getText();
+        String email=emailText.getText();
+        String gender="";
+        if(fgender.isSelected())
+            gender="Female";
+        else if(mgender.isSelected())
+                gender="Male";
+        else
+            gender="Male";
+        String status=this.statusBox.getSelectedItem().toString();
+        String proID=this.proId.getText();
+        boolean flag=false;
+        String str="";
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            if(Driver.getInstance().getPro().get(i).getId().equals(proID))
+            {
+                flag=true;
+                break;
+            }
+        }
+        if(flag==true)
+        {
+            Advisor ad=new Advisor(status,gender,proID);
+            flag=ad.setName(name);
+//            System.out.println(flag);
+            if(flag==false)
+            {
+                this.invalidName.setText("Invalid Name");
+                str="n";
+            }
+            flag=ad.setCnic(cnic);
+//            System.out.println(flag);
+            if(flag==false)
+            {
+                this.invalidCnic.setText("Only digits required");
+                str="n";
+            }
+            flag=ad.setEmail(email);
+//            System.out.println(flag);
+            if(flag==false)
+            {
+                this.invalidEmail.setText("Invalid email");
+                str="n";
+            }
+            if(str.equals(""))
+            {
+                Driver.getInstance().getAd().add(ad);
+                System.out.println("Added Successfully");
+                addDatatoRow();
+                this.invalidName.setText(null);
+                this.invalidCnic.setText(null);
+                this.invalidEmail.setText(null);
+                this.invalidId.setText(null);
+            }
+        }
+        else
+        {
+            this.invalidId.setText("ID not found");
+        }
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        // TODO add your handling code here:
+        this.nameText.setText(null);
+        this.cnicText.setText(null);
+        this.emailText.setText(null);
+        this.fgender.setSelected(false);
+        this.mgender.setSelected(false);
+        this.statusBox.setSelectedIndex(0);
+        this.proId.setText(null);
+        this.invalidName.setText(null);
+        this.invalidCnic.setText(null);
+        this.invalidEmail.setText(null);
+        this.invalidId.setText(null);
+        addDatatoRow();
+        
+    }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,6 +411,7 @@ public class AddAdviser extends javax.swing.JFrame {
     private javax.swing.JLabel invalidEmail;
     private javax.swing.JLabel invalidId;
     private javax.swing.JLabel invalidName;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

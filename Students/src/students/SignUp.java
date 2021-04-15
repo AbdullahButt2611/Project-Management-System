@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package students;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.*;
 /**
  *
  * @author DEll
@@ -16,6 +18,11 @@ public class SignUp extends javax.swing.JFrame {
      */
     public SignUp() {
         initComponents();
+        this.invalidName.setText(null);
+        this.invalidEmail.setText(null);
+        this.invalidCnic.setText("Only digits required");
+        this.invalidAddress.setText(null);
+        this.invalidContact.setText(null);
     }
 
     /**
@@ -134,7 +141,7 @@ public class SignUp extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Password :");
 
-        jLabel11.setText("8 characters long");
+        jLabel11.setText("8 characters long atleast");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Date of Birth :");
@@ -144,6 +151,11 @@ public class SignUp extends javax.swing.JFrame {
         registerButton.setForeground(new java.awt.Color(255, 255, 255));
         registerButton.setText("Register");
         registerButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -313,6 +325,88 @@ public class SignUp extends javax.swing.JFrame {
     private void mgenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mgenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mgenderActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // TODO add your handling code here:
+        String name=nameText.getText();
+        String email=emailText.getText();
+        String cnic=cnicText.getText();
+        String gender="";
+        if(mgender.isSelected())
+            gender="Male";
+        else if(fgender.isSelected())
+            gender="Female";
+        String qual=qualBox.getSelectedItem().toString();
+        String address=addressText.getText();
+        String contact=conTect.getText();
+        String password=passText.getText();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy"); 
+        String dob=sdf.format(jDateChooser1.getDate()).toString();
+        
+        Heads h1=new Heads(gender,qual);
+        
+        boolean flag=false;
+        String str="";
+        flag=h1.setName(name);
+//       System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidName.setText("Invalid Name......");
+            str="n";
+        }
+        flag=h1.setEmail(email);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidEmail.setText("Invalid Email....");
+            str="n";
+        }
+        flag=h1.setCnic(cnic);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidCnic.setText("Only digits required");
+            str="n";
+        }
+        else
+        {
+            this.invalidCnic.setText(null);
+        }
+        flag=h1.setAddress(address);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidAddress.setText("Invalid Address");
+            str="n";
+        }
+        flag=h1.setContact(contact);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.invalidContact.setText("Invalid Contact number");
+            str="n";
+        }
+        flag=h1.setPassword(password);
+//        System.out.println(flag);
+        if(flag==false)
+        {
+            this.jLabel11.setText("Invalid password");
+            str="n";
+        }
+        else
+        {
+            this.jLabel11.setText(null);
+        }
+        if(str.equals(""))
+        {
+            HeadData.getInstance().getHead().add(h1);
+            JOptionPane.showMessageDialog(null,"Your data has been added Succesfully");
+            StudentLogin st=new StudentLogin();
+            st.setVisible(true);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments

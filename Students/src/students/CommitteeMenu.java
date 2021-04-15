@@ -49,25 +49,65 @@ public class CommitteeMenu extends javax.swing.JFrame {
         jLabel2.setText("Click on of the Following :");
 
         addadButton.setText("ADD ADVISOR");
+        addadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addadButtonActionPerformed(evt);
+            }
+        });
 
         deladButton.setText("DELETE ADVISOR");
+        deladButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deladButtonActionPerformed(evt);
+            }
+        });
 
         addproButton.setText("ADD PROJECT");
+        addproButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addproButtonActionPerformed(evt);
+            }
+        });
 
         disproButton.setText("DISPLAY PROJECT");
         disproButton.setActionCommand("");
+        disproButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disproButtonActionPerformed(evt);
+            }
+        });
 
         upproButton.setText("UPDATE PROJECT");
+        upproButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upproButtonActionPerformed(evt);
+            }
+        });
 
         evaluateButton.setText("EVALUATE PROJECTS");
+        evaluateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evaluateButtonActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("DISPLAY GROUP HEADS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         logoutButton.setBackground(new java.awt.Color(255, 0, 0));
         logoutButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setText("LOG OUT");
         logoutButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,6 +190,62 @@ public class CommitteeMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addadButtonActionPerformed
+        // TODO add your handling code here:
+        AddAdviser add=new AddAdviser();
+        add.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addadButtonActionPerformed
+
+    private void deladButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deladButtonActionPerformed
+        // TODO add your handling code here:
+        DeleteAdvisor del=new DeleteAdvisor();
+        del.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deladButtonActionPerformed
+
+    private void addproButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addproButtonActionPerformed
+        // TODO add your handling code here:
+        AddProject add=new AddProject();
+        add.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addproButtonActionPerformed
+
+    private void disproButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disproButtonActionPerformed
+        // TODO add your handling code here:
+        DisplayProject dis=new DisplayProject();
+        dis.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_disproButtonActionPerformed
+
+    private void upproButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upproButtonActionPerformed
+        // TODO add your handling code here:
+        UpdatProject up=new UpdatProject();
+        up.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_upproButtonActionPerformed
+
+    private void evaluateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluateButtonActionPerformed
+        // TODO add your handling code here:
+        ProjectEvaluation1 ev=new ProjectEvaluation1();
+        ev.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_evaluateButtonActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        DisplayHeads dis=new DisplayHeads();
+        dis.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        MainLogin main=new MainLogin();
+        main.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
