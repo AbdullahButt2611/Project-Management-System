@@ -5,17 +5,30 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+
+    
+
 /**
  *
  * @author DEll
  */
 public class Module1Form extends javax.swing.JFrame {
 
+    int index;
+    int marks;
+    
     /**
      * Creates new form Module1Form
      */
     public Module1Form() {
         initComponents();
+    }
+    
+    public Module1Form(int i)
+    {
+        initComponents();
+        this.index=i;
     }
 
     /**
@@ -78,8 +91,18 @@ public class Module1Form extends javax.swing.JFrame {
         jLabel10.setText("Total=10");
 
         calculateButton.setText("Calculate");
+        calculateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateButtonActionPerformed(evt);
+            }
+        });
 
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,6 +196,27 @@ public class Module1Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
+        // TODO add your handling code here:
+        int i=Integer.parseInt(this.repText.getText());
+        int j=Integer.parseInt(this.desText.getText());
+        int k=Integer.parseInt(this.snippetsText.getText());
+        i=i+j+k;
+        String str=""+i;
+        Heads hd=new Heads(HeadData.getInstance().getHead().get(index).getGender(),HeadData.getInstance().getHead().get(index).getQualification());
+        hd.setMarks1(str);
+        HeadData.getInstance().getHead().set(index, hd);
+        this.obtText.setText(HeadData.getInstance().getHead().get(index).getTotal()+"");
+        
+    }//GEN-LAST:event_calculateButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Data added successfully");
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,17 +5,26 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DEll
  */
 public class Module2Form extends javax.swing.JFrame {
 
+    int index;
+    
     /**
      * Creates new form Module2Form
      */
     public Module2Form() {
         initComponents();
+    }
+    
+     public Module2Form(int i) {
+        initComponents();
+        this.index=i;
     }
 
     /**
@@ -66,8 +75,18 @@ public class Module2Form extends javax.swing.JFrame {
         jLabel4.setText("MODULE 2");
 
         calculateButton1.setText("Calculate");
+        calculateButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateButton1ActionPerformed(evt);
+            }
+        });
 
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel5.setText("GUI :");
@@ -141,10 +160,9 @@ public class Module2Form extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(obtText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(obtText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(21, 21, 21)
@@ -171,6 +189,26 @@ public class Module2Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void calculateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButton1ActionPerformed
+        // TODO add your handling code here:
+        int i=Integer.parseInt(guiText.getText());
+        int j=Integer.parseInt(colorText.getText());
+        int k=Integer.parseInt(friendlyText.getText());
+        i=i+j+k;
+        String str=""+i;
+        Heads hd=new Heads(HeadData.getInstance().getHead().get(index).getGender(),HeadData.getInstance().getHead().get(index).getQualification());
+        hd.setMarks2(str);
+        HeadData.getInstance().getHead().set(index, hd);
+        this.obtText.setText(HeadData.getInstance().getHead().get(index).getTotal()+"");
+    }//GEN-LAST:event_calculateButton1ActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Data added successfully");
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -320,7 +320,7 @@ public class AddMembers extends javax.swing.JFrame {
                  this.invalidCity.setText("Invalid city");
                  str="n";
              }
-             if(str.equals(null))
+             if(str.equals(""))
              {
                  Driver.getInstance().getMem().get(this.indexOfHead).getStu().add(st);
     //             JOptionPane.showMessageDialog(null,"Data added successfully");

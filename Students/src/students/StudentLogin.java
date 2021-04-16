@@ -187,9 +187,12 @@ public class StudentLogin extends javax.swing.JFrame {
         int index=-1;
         String user=userText.getText();
         String pass=passText.getText();
-       int size= HeadData.getInstance().getHead().size();
-       for(int i=0;i<size;i++)
+        System.out.println("in button");
+       for(int i=0;i<HeadData.getInstance().getHead().size();i++)
        {
+           System.out.println("in loop");
+           System.out.println(HeadData.getInstance().getHead().get(i).getEmail());
+           System.out.println(HeadData.getInstance().getHead().get(i).getPassword());
            if(HeadData.getInstance().getHead().get(i).getEmail().equals(user)  && HeadData.getInstance().getHead().get(i).getPassword().equals(pass))
            {
                index=i;
@@ -217,11 +220,9 @@ public class StudentLogin extends javax.swing.JFrame {
            stu.setContact(contact);
            stu.setCnic(cnic);
            stu.setCity(city);
-//           Driver.getInstance().getMem().get(index).getStu().add(stu);
             Members.getInstance().getStu().add(stu);
-            Driver.getInstance().getMem().get(index).setID(HeadData.getInstance().getHead().get(index).getID());
             Driver.getInstance().addMem(Members.getInstance());
-            
+            Driver.getInstance().getMem().get(index).setID(HeadData.getInstance().getHead().get(index).getID());
            }
            StudentMenu st=new StudentMenu(index);
            st.setVisible(true);

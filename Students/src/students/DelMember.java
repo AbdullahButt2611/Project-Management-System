@@ -24,8 +24,9 @@ public class DelMember extends javax.swing.JFrame {
     
     public DelMember(int i)
     {
+        initComponents();
         this.indexOfHead=i;
-        this.invalidSr.setText(null);
+        this.invalidSr.setText("");
         addRowToTable();
     }
     
@@ -33,15 +34,20 @@ public class DelMember extends javax.swing.JFrame {
     {
         DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
         Object rowData[]=new Object[5];
-        for(int i=0;i<Driver.getInstance().getMem().get(this.indexOfHead).getStu().size();i++)
+        model.setRowCount(0);
+        if(Driver.getInstance().getMem().get(this.indexOfHead).getStu().size()>0)
         {
-            rowData[0]=i+1;
-            rowData[1]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getName();
-            rowData[2]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getGender();
-            rowData[3]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getQualification();
-            rowData[4]=Driver.getInstance().getMem().get(this.indexOfHead).getID();
-            model.addRow(rowData);
+            for(int i=0;i<Driver.getInstance().getMem().get(this.indexOfHead).getStu().size();i++)
+            {
+                rowData[0]=i+1;
+                rowData[1]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getName();
+                rowData[2]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getGender();
+                rowData[3]=Driver.getInstance().getMem().get(this.indexOfHead).getStu().get(i).getQualification();
+                rowData[4]=Driver.getInstance().getMem().get(this.indexOfHead).getID();
+                model.addRow(rowData);
+            }
         }
+       
     }
 
     /**
@@ -153,6 +159,7 @@ public class DelMember extends javax.swing.JFrame {
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
         // TODO add your handling code here:
         int sr=Integer.parseInt(srText.getText());
+        sr=sr-1;
         Driver.getInstance().getMem().get(indexOfHead).getStu().remove(sr);
         addRowToTable();
         this.srText.setText(null);

@@ -5,17 +5,46 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
  */
 public class ProjectEvaluation1 extends javax.swing.JFrame {
-
+    
+    int index;
+    
     /**
      * Creates new form ProjectEvaluation1
      */
     public ProjectEvaluation1() {
         initComponents();
+        addDataToRow();
+        this.index=-1;
+    }
+    
+    public void addDataToRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        {
+            rowData[0]=Driver.getInstance().getPro().get(i).getId();
+            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+            rowData[2]=Driver.getInstance().getPro().get(i).getType();
+            for(int j=0;j<Driver.getInstance().getMem().size();j++)
+            {
+                if(Driver.getInstance().getMem().get(j).getProId().equals(Driver.getInstance().getPro().get(i).getId()))
+                {
+                    rowData[4]=Driver.getInstance().getMem().get(j).getID();
+                    break;
+                }
+            }
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -50,15 +79,30 @@ public class ProjectEvaluation1 extends javax.swing.JFrame {
         mod1Button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod1Button.setText("MODULE 1");
         mod1Button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        mod1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod1ButtonActionPerformed(evt);
+            }
+        });
 
         mod2Button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod2Button.setText("MODULE 2");
         mod2Button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        mod2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod2ButtonActionPerformed(evt);
+            }
+        });
 
         mod3Button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod3Button.setText("MODULE 3");
         mod3Button.setActionCommand("");
         mod3Button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        mod3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod3ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,6 +204,78 @@ public class ProjectEvaluation1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mod1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod1ButtonActionPerformed
+        // TODO add your handling code here:
+        String id=idText.getText();
+        for(int i=0;i<Driver.getInstance().getMem().size();i++)
+        {
+            if(Driver.getInstance().getMem().get(i).getProId().equals(id))
+            {
+                this.index=i;
+                break;
+            }
+        }
+        if(index==-1)
+        {
+            JOptionPane.showMessageDialog(null,"Project ID not found");
+        }
+        else
+        {
+            Module1Form mod=new Module1Form(index);
+            mod.setVisible(true);
+            this.dispose();
+        }
+        
+        
+    }//GEN-LAST:event_mod1ButtonActionPerformed
+
+    private void mod2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod2ButtonActionPerformed
+        // TODO add your handling code here:
+         String id=idText.getText();
+        for(int i=0;i<Driver.getInstance().getMem().size();i++)
+        {
+            if(Driver.getInstance().getMem().get(i).getProId().equals(id))
+            {
+                this.index=i;
+                break;
+            }
+        }
+        if(index==-1)
+        {
+            JOptionPane.showMessageDialog(null,"Project ID not found");
+        }
+        else
+        {
+            Module2Form mod=new Module2Form(index);
+            mod.setVisible(true);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_mod2ButtonActionPerformed
+
+    private void mod3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod3ButtonActionPerformed
+        // TODO add your handling code here:
+        String id=idText.getText();
+        for(int i=0;i<Driver.getInstance().getMem().size();i++)
+        {
+            if(Driver.getInstance().getMem().get(i).getProId().equals(id))
+            {
+                this.index=i;
+                break;
+            }
+        }
+        if(index==-1)
+        {
+            JOptionPane.showMessageDialog(null,"Project ID not found");
+        }
+        else
+        {
+            Module3Form mod=new Module3Form(index);
+            mod.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_mod3ButtonActionPerformed
 
     /**
      * @param args the command line arguments

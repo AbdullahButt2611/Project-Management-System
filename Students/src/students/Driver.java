@@ -144,6 +144,7 @@ public class Driver {
                 a.setGender(toks[4]);
                 a.setStatus(toks[5]);
                 a.setId(toks[6]);
+                line=br.readLine();
             }
             
             br.close();
@@ -193,13 +194,17 @@ public class Driver {
             BufferedReader br=new BufferedReader(fr);
             String line=br.readLine();
             line=br.readLine();
+//            System.out.println("1 read");
             while(line!=null)
             {
+//                System.out.println("2 read");
                 String toks[]=line.split("/");
+//                System.out.println(toks.length);
                 Students st=new Students("","");
                 Members.getInstance().setID(toks[0]);
-                for(int i=1;i<((toks.length)-1);i++)
+                for(int i=1;i<((toks.length));i++)
                 {
+//                    System.out.println("3 read");
                     String str=toks[i];
                     String token[]=str.split(",");
                     st.setName(token[0]);
@@ -213,6 +218,7 @@ public class Driver {
                     
                 }
                 Driver.getInstance().getMem().add(Members.getInstance());
+                line=br.readLine();
             }
             br.close();
             fr.close();
@@ -268,6 +274,7 @@ public class Driver {
                 p.setType(toks[2]);
                 p.setDescription(toks[3]);
                 Driver.getInstance().addPro(p);
+                line=br.readLine();
             }
             br.close();
             fr.close();
@@ -351,10 +358,14 @@ public class Driver {
     
     public static void main(String[] args)
     {
-        Driver.getInstance().readAdData();
+       /* Driver.getInstance().readAdData();
+        System.out.println("No 1");
         Driver.getInstance().readProData();
+        System.out.println("No 2");
         Driver.getInstance().readMemData();
+        System.out.println("No 3");
         HeadData.getInstance().loadData();
+        System.out.println("No 4");*/
         MainLogin main=new MainLogin(1);
         main.setVisible(true);
     }

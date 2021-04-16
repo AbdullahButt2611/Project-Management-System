@@ -38,11 +38,10 @@ public class Heads extends Details{
         super(gender);
         this.qualification=qualification;
         this.setID("");
-        this.mark1=0;
-        this.mark2=0;
-        this.mark3=0;
     }
 
+    
+    
     /**
      * This is a getter for the ID 
      * @return String which is going to be the ID of the person acting as head
@@ -108,8 +107,9 @@ public class Heads extends Details{
         if(id.equals(""))
         {
             String str="GR-";
-            Random rand=new Random(1001);
-            str+=rand;
+            Random rand=new Random();
+            int i=rand.nextInt(1001);
+            str+=i;
             this.ID=str;
         }
         else

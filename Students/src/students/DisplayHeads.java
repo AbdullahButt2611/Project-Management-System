@@ -5,6 +5,8 @@
  */
 package students;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DEll
@@ -16,6 +18,22 @@ public class DisplayHeads extends javax.swing.JFrame {
      */
     public DisplayHeads() {
         initComponents();
+        addDataToRow();
+    }
+    
+    public void addDataToRow()
+    {
+        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+        Object rowData[]=new Object[4];
+        model.setRowCount(0);
+        for(int i=0;i<HeadData.getInstance().getHead().size();i++)
+        {
+            rowData[0]=HeadData.getInstance().getHead().get(i).getID();
+            rowData[1]=HeadData.getInstance().getHead().get(i).getName();
+            rowData[2]=Driver.getInstance().getMem().get(i).getProId();
+            rowData[3]=HeadData.getInstance().getHead().get(i).getTotal();
+            model.addRow(rowData);
+        }
     }
 
     /**
@@ -46,6 +64,11 @@ public class DisplayHeads extends javax.swing.JFrame {
 
         menuButton.setText("Menu");
         menuButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +91,13 @@ public class DisplayHeads extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        // TODO add your handling code here:
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -97,6 +97,7 @@ public class HeadData {
                 h.setMarks2(toks[5]);
                 h.setMarks3(toks[6]);
                 HeadData.getInstance().addHead(h);
+                line=br.readLine();
             }
             br.close();
             fr.close();

@@ -5,17 +5,26 @@
  */
 package students;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DEll
  */
 public class Module3Form extends javax.swing.JFrame {
 
+    int index;
+    
     /**
      * Creates new form Module3Form
      */
     public Module3Form() {
         initComponents();
+    }
+    
+     public Module3Form(int i) {
+        initComponents();
+        this.index=i;
     }
 
     /**
@@ -60,8 +69,18 @@ public class Module3Form extends javax.swing.JFrame {
         jLabel4.setText("MODULE 3");
 
         calculateButton.setText("Calculate");
+        calculateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateButtonActionPerformed(evt);
+            }
+        });
 
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel5.setText("Coding Style :");
@@ -156,6 +175,25 @@ public class Module3Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
+        // TODO add your handling code here:
+        int i=Integer.parseInt(codeText.getText());
+        int j=Integer.parseInt(moduleText.getText());
+        i=i+j;
+        String str=""+i;
+        Heads hd=new Heads(HeadData.getInstance().getHead().get(index).getGender(),HeadData.getInstance().getHead().get(index).getQualification());
+        hd.setMarks3(str);
+        HeadData.getInstance().getHead().set(index, hd);
+        this.obtText.setText(HeadData.getInstance().getHead().get(index).getTotal()+"");
+    }//GEN-LAST:event_calculateButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Data added successfully");
+        CommitteeMenu menu=new CommitteeMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * @param args the command line arguments

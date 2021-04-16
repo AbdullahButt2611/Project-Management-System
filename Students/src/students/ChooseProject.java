@@ -34,25 +34,30 @@ public class ChooseProject extends javax.swing.JFrame {
     
     public void addDataToRow()
     {
-        DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
-        Object rowData[]=new Object[4];
-        model.setRowCount(0);
-        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        
+        if(Driver.getInstance().getPro().size()>0)
         {
-            rowData[0]=Driver.getInstance().getPro().get(i).getId();
-            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
-            rowData[2]=Driver.getInstance().getPro().get(i).getType();
-            for(int j=0;j<Driver.getInstance().getAd().size();j++)
+            DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
+            Object rowData[]=new Object[4];
+            model.setRowCount(0);
+            for(int i=0;i<Driver.getInstance().getPro().size();i++)
             {
-                if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                rowData[0]=Driver.getInstance().getPro().get(i).getId();
+                rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+                rowData[2]=Driver.getInstance().getPro().get(i).getType();
+                for(int j=0;j<Driver.getInstance().getAd().size();j++)
                 {
-                    rowData[3]=Driver.getInstance().getAd().get(j).getName();
-                    flag=true;
-                    break;
+                    if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                    {
+                        rowData[3]=Driver.getInstance().getAd().get(j).getName();
+                        flag=true;
+                        break;
+                    }
                 }
+                model.addRow(rowData);
             }
-            model.addRow(rowData);
         }
+        
     }
     
     /**
