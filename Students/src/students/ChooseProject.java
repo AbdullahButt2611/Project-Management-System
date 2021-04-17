@@ -26,24 +26,28 @@ public class ChooseProject extends javax.swing.JFrame {
 
     public ChooseProject(int i)
     {
+        initComponents();
+//        System.out.println("In constructor");
         this.indexOfHead=i;
+//        System.out.println("1");
         addDataToRow();
-        this.invalidId.setText(null);
-        
+//        System.out.println("2");
+      invalidId.setText("");
+//        System.out.println("3");
     }
     
     public void addDataToRow()
     {
         
-        if(Driver.getInstance().getPro().size()==0)
-        {
-            System.out.println("No project added yet");
-            StudentMenu menu=new StudentMenu(this.indexOfHead);
-            menu.setVisible(true);
-            this.dispose();
-        }
-        else
-        {
+//        if(Driver.getInstance().getPro().size()==0)
+//        {
+//            System.out.println("No project added yet");
+//            StudentMenu menu=new StudentMenu(this.indexOfHead);
+//            menu.setVisible(true);
+//            this.setVisible(false);
+//        }
+//        else
+//        {
             
             DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
             Object rowData[]=new Object[4];
@@ -64,7 +68,7 @@ public class ChooseProject extends javax.swing.JFrame {
                 }
                 model.addRow(rowData);
             }
-        }
+//        }
     }
     
     /**

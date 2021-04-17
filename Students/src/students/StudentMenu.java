@@ -162,6 +162,7 @@ public class StudentMenu extends javax.swing.JFrame {
     private void chooseproButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseproButtonActionPerformed
         // TODO add your handling code here:
         ChooseProject cho=new ChooseProject(this.indexOfHead);
+        System.out.println("In choose button");
         cho.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_chooseproButtonActionPerformed

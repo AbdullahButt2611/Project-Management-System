@@ -22,6 +22,7 @@ public class Evaluation extends javax.swing.JFrame {
 
     public Evaluation(int i)
     {
+        initComponents();
         this.indexOfHead=i;
         this.idText.setText(Driver.getInstance().getMem().get(i).getID());
 //        String str=""+HeadData.getInstance().getHead().get(i).getMark1();

@@ -188,6 +188,7 @@ public class StudentLogin extends javax.swing.JFrame {
         String user=userText.getText();
         String pass=passText.getText();
         System.out.println("in button");
+        System.out.println(HeadData.getInstance().getHead().size());
        for(int i=0;i<HeadData.getInstance().getHead().size();i++)
        {
            System.out.println("in loop");

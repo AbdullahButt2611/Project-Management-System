@@ -103,7 +103,7 @@ public class Driver {
     {
         try
         {
-            FileWriter fw=new FileWriter("Advisors");
+            FileWriter fw=new FileWriter("Advisors.txt");
             BufferedWriter br=new BufferedWriter(fw);
             br.write("name , contact , cnic, email , gender, status , id \n");
             for(int i =0;i<this.ad.size();i++)
@@ -129,7 +129,7 @@ public class Driver {
     {
         try
         {
-            FileReader fr=new FileReader("Advisors");
+            FileReader fr=new FileReader("Advisors.txt");
             BufferedReader br=new BufferedReader(fr);
             String line=br.readLine();
             line=br.readLine();
@@ -163,7 +163,7 @@ public class Driver {
     {
         try
         {
-            FileWriter fw=new FileWriter("Members");
+            FileWriter fw=new FileWriter("Members.txt");
             BufferedWriter bw=new BufferedWriter(fw);
             bw.write("ID/Name,Contact,CNIC,Email,Gender,City,Qualification/ \n");
             for(int i=0;i<mem.size();i++)
@@ -190,7 +190,7 @@ public class Driver {
     {
         try
         {
-            FileReader fr=new FileReader("Members");
+            FileReader fr=new FileReader("Members.txt");
             BufferedReader br=new BufferedReader(fr);
             String line=br.readLine();
             line=br.readLine();
@@ -236,7 +236,7 @@ public class Driver {
     {
         try
         {
-            FileWriter fw=new FileWriter("Projects");
+            FileWriter fw=new FileWriter("Projects.txt");
             BufferedWriter bw=new BufferedWriter(fw);
             bw.write("ID * Title * Type * Description \n");
             for(int i=0;i<this.pro.size();i++)
@@ -261,7 +261,7 @@ public class Driver {
     {
         try
         {
-            FileReader fr=new FileReader("Projects");
+            FileReader fr=new FileReader("Projects.txt");
             BufferedReader br=new BufferedReader(fr);
             String line=br.readLine();
             line=br.readLine();
