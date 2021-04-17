@@ -25,29 +25,62 @@ public class DisplayProject extends javax.swing.JFrame {
     {
         DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
         Object rowData[]=new Object[5];
-        model.setRowCount(0);
-        for(int i=0;i<Driver.getInstance().getPro().size();i++)
+        if(Driver.getInstance().getPro().size()>0)
         {
-            rowData[0]=Driver.getInstance().getPro().get(i).getId();
-            rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
-            for(int j=0;j<Driver.getInstance().getAd().size();j++)
+            model.setRowCount(0);
+            for(int i=0;i<Driver.getInstance().getPro().size();i++)
             {
-                if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                rowData[0]=Driver.getInstance().getPro().get(i).getId();
+                rowData[1]=Driver.getInstance().getPro().get(i).getTitle();
+                if(Driver.getInstance().getAd().size()>0)
                 {
-                    rowData[2]=Driver.getInstance().getAd().get(j).getID();
-                    rowData[3]=Driver.getInstance().getAd().get(j).getStatus();
-                    break;
+                    for(int j=0;j<Driver.getInstance().getAd().size();j++)
+                    {
+                        if(Driver.getInstance().getAd().get(j).getID().equals(Driver.getInstance().getPro().get(i).getId()))
+                        {
+                            rowData[2]=Driver.getInstance().getAd().get(j).getID();
+                            rowData[3]=Driver.getInstance().getAd().get(j).getStatus();
+                            break;
+                        }
+                    }
                 }
-            }
-            for(int j=0;j<Driver.getInstance().getMem().size();j++)
-            {
-                if(Driver.getInstance().getMem().get(j).getProId().equals(Driver.getInstance().getPro().get(i).getId()))
+                else
                 {
-                    rowData[4]=Driver.getInstance().getMem().get(j).getID();
-                    break;
+                    rowData[2]=null;
+                    rowData[3]=null;
                 }
+                if(Driver.getInstance().getMem().size()>0)
+                {
+                    for(int j=0;j<Driver.getInstance().getMem().size();j++)
+                    {
+                        if(Driver.getInstance().getPro().size()>i)
+                        {
+                            System.out.println(Driver.getInstance().getMem().get(j).getProId());
+                            /*if(Driver.getInstance().getMem().get(j).getProId().equals(null))
+                            {*/
+                                if(Driver.getInstance().getPro().get(i).getId().equals(Driver.getInstance().getMem().get(j).getProId()))
+                                {
+                                    rowData[4]=Driver.getInstance().getMem().get(j).getID();
+                                    break;
+                                }
+                           /* }
+                            else
+                            {
+                                rowData[4]=null;
+                            }*/
+                        }
+                        else
+                        {
+                             rowData[4]=null;
+                        }
+                    }
+                }
+                else
+                {
+                 rowData[4]=null;   
+                }
+                model.addRow(rowData);
             }
-            model.addRow(rowData);
         }
     }
 

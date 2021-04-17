@@ -401,6 +401,15 @@ public class SignUp extends javax.swing.JFrame {
         {
             HeadData.getInstance().getHead().add(h1);
             JOptionPane.showMessageDialog(null,"Your data has been added Succesfully");
+            Students stu=new Students(gender,qual);
+            stu.setName(name);
+            String city="Lahore";
+            stu.setContact(contact);
+            stu.setCnic(cnic);
+            stu.setCity(city);
+            Members.getInstance().getStu().add(stu);
+            Driver.getInstance().addMem(Members.getInstance());
+            Driver.getInstance().getMem().get(HeadData.getInstance().getHead().size()-1).setID(HeadData.getInstance().getHead().get(HeadData.getInstance().getHead().size()-1).getID());
             StudentLogin st=new StudentLogin();
             st.setVisible(true);
             this.dispose();

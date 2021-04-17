@@ -61,7 +61,7 @@ public class HeadData {
             bw.write("id ,, name ,, email ,, cnic ,, gender ,, address ,, contact ,, qualification ,, password ,, mark of module 1 ,, mark of module 2 ,, mark of module 3 \n");
             for(int i=0;i<head.size();i++)
             {
-                bw.write(head.get(i).getID()+",,"+head.get(i).getName()+"*,,"+head.get(i).getEmail()+",,"+head.get(i).getCNIC()+",,"+head.get(i).getGender()+","+head.get(i).getAddress()+",,"+head.get(i).getContact()+",,"+head.get(i).getQualification()+",,"+head.get(i).getPassword()+",,"+head.get(i).getMark1()+",,"+head.get(i).getMark2()+",,"+head.get(i).getMark3()+"\n");
+                bw.write(head.get(i).getID()+",,"+head.get(i).getName()+",,"+head.get(i).getEmail()+",,"+head.get(i).getCNIC()+",,"+head.get(i).getGender()+",,"+head.get(i).getAddress()+",,"+head.get(i).getContact()+",,"+head.get(i).getQualification()+",,"+head.get(i).getPassword()+",,"+head.get(i).getMark1()+",,"+head.get(i).getMark2()+",,"+head.get(i).getMark3()+"\n");
                
             }
              bw.flush();
@@ -85,11 +85,12 @@ public class HeadData {
             BufferedReader br=new BufferedReader(fr);
             String line=br.readLine();
             line=br.readLine();
-            System.out.println(line);
+//            System.out.println(line);
             while(line!=null)
             {
                 Heads h=new Heads("","");
                 String toks[]=line.split(",,");
+//                System.out.println("index suze"+toks.length);
                 h.setID(toks[0]);
                 h.setName(toks[1]);
                 h.setEmail(toks[2]);
@@ -103,15 +104,16 @@ public class HeadData {
                 h.setMarks2(toks[10]);
                 h.setMarks3(toks[11]);
                 HeadData.getInstance().addHead(h);
-                System.out.println("Size in loop "+HeadData.getInstance().getHead().size());
+//              System.out.println("Size in loop "+HeadData.getInstance().getHead().size());
                 line=br.readLine();
-                System.out.println(line);
+//              System.out.println(line);
             }
             br.close();
             fr.close();
         }
         catch(Exception ex)
         {
+            ex.printStackTrace();
             System.out.println("Null exception");
         }
     }
