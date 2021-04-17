@@ -35,8 +35,16 @@ public class ChooseProject extends javax.swing.JFrame {
     public void addDataToRow()
     {
         
-        if(Driver.getInstance().getPro().size()>0)
+        if(Driver.getInstance().getPro().size()==0)
         {
+            System.out.println("No project added yet");
+            StudentMenu menu=new StudentMenu(this.indexOfHead);
+            menu.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            
             DefaultTableModel model=(DefaultTableModel) jTable1.getModel();
             Object rowData[]=new Object[4];
             model.setRowCount(0);
@@ -57,7 +65,6 @@ public class ChooseProject extends javax.swing.JFrame {
                 model.addRow(rowData);
             }
         }
-        
     }
     
     /**

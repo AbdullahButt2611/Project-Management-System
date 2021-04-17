@@ -358,14 +358,14 @@ public class Driver {
     
     public static void main(String[] args)
     {
-       /* Driver.getInstance().readAdData();
+        Driver.getInstance().readAdData();
         System.out.println("No 1");
         Driver.getInstance().readProData();
         System.out.println("No 2");
         Driver.getInstance().readMemData();
         System.out.println("No 3");
         HeadData.getInstance().loadData();
-        System.out.println("No 4");*/
+        System.out.println("No 4");
         MainLogin main=new MainLogin(1);
         main.setVisible(true);
     }

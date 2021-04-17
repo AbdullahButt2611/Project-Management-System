@@ -210,6 +210,7 @@ public class StudentLogin extends javax.swing.JFrame {
            if(index==(HeadData.getInstance().getHead().size()-1))
            {
            String name=HeadData.getInstance().getHead().get(index).getName();
+           String email=HeadData.getInstance().getHead().get(index).getEmail();
            String contact=HeadData.getInstance().getHead().get(index).getContact();
            String cnic=HeadData.getInstance().getHead().get(index).getCNIC();
            String gender=HeadData.getInstance().getHead().get(index).getGender();
